@@ -1,0 +1,32 @@
+  <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+    <div nz-col nzSm="24" [nzMd]="{span:16}">
+      <nz-card>
+        <nz-tabset [nzAnimated]="false">
+          <nz-tab nzTitle="通知">
+            <nz-list nzItemLayout="horizontal">
+              <nz-list-item *ngFor="let item of data">
+                <nz-list-item-meta nzDescription="管理员">
+                  <nz-list-item-meta-title>
+                    <a href="https://ng.ant.design">内容</a>
+                  </nz-list-item-meta-title>
+                </nz-list-item-meta>
+              </nz-list-item>
+              <nz-list-empty *ngIf="data.length === 0"></nz-list-empty>
+            </nz-list>
+          </nz-tab>
+          <nz-tab nzTitle="依赖事项">
+            <nz-list nzItemLayout="horizontal">
+              <nz-list-item *ngFor="let item of data">
+                <nz-list-item-meta nzDescription="系统">
+                  <nz-list-item-meta-title>
+                    <a href="https://ng.ant.design">已处理</a>
+                  </nz-list-item-meta-title>
+                </nz-list-item-meta>
+              </nz-list-item>
+              <nz-list-empty *ngIf="data.length === 0"></nz-list-empty>
+            </nz-list>
+          </nz-tab>
+        </nz-tabset>
+      </nz-card>
+    </div>
+  </div>

@@ -1,0 +1,28 @@
+<p #greet>Hello </p>
+<ng-container *ngIf="document$ | async as doc">
+
+  <nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+    <nz-col [nzSpan]="24">
+      <nz-alert nzType="warning" *ngIf="doc.Intro" [nzMessage]="doc.Intro"></nz-alert>
+    </nz-col>
+    <nz-col [nzSpan]="8" *ngFor="let file of doc.Files">
+      <nz-card [nzTitle]="file.title">
+        <nz-table #borderedTable nzBordered [nzData]="file.files" [nzShowPagination]="false">
+          <thead>
+            <tr>
+              <th [nzWidth]="'80%'">文件名</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let file of borderedTable.data">
+              <td>{{ file.name }}</td>
+              <td><button nz-button nzType="primary" [nzSize]="'default'"><i nz-icon nzType="download"></i>下载</button>
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </nz-card>
+    </nz-col>
+  </nz-row>
+</ng-container>

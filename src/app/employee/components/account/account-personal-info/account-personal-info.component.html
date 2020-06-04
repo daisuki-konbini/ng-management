@@ -1,0 +1,82 @@
+<nz-card [nzBordered]="false" nzTitle="基本设置">
+  <nz-row>
+    <nz-col [nzSpan]="14">
+      <div class="info-form">
+        <form nz-form [formGroup]="profileForm">
+          <div nz-row [nzGutter]="24">
+            <div nz-col [nzSpan]="12">
+              <nz-form-item>
+                <nz-form-label [nzSpan]="24">姓 last name</nz-form-label>
+                <nz-form-control [nzSpan]="24" nzErrorTip="入力してください。">
+                  <input nz-input formControlName="LastName" placeholder="例）楽天" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="12">
+              <nz-form-item>
+                <nz-form-label [nzSpan]="24">名 first name</nz-form-label>
+                <nz-form-control [nzSpan]="24" nzErrorTip="入力してください。">
+                  <input nz-input formControlName="FirstName" placeholder="例）太郎" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="12">
+              <nz-form-item>
+                <nz-form-control [nzSpan]="24" nzErrorTip="入力してください。">
+                  <input nz-input formControlName="LastNameKana" placeholder="例）ラクテン" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="12">
+              <nz-form-item>
+                <nz-form-control [nzSpan]="24" nzErrorTip="入力してください。">
+                  <input nz-input formControlName="FirstNameKana" placeholder="例）タロウ" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="24">性別</nz-form-label>
+            <nz-form-control [nzSpan]="24" nzErrorTip="入力してください。">
+              <nz-radio-group formControlName="Sex" nzButtonStyle="solid">
+                <label nz-radio-button [nzValue]="0">男性</label>
+                <label nz-radio-button [nzValue]="1">女性</label>
+              </nz-radio-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="24">生年月日</nz-form-label>
+            <nz-form-control [nzSpan]="10" nzErrorTip="入力してください。">
+              <nz-date-picker formControlName="BirthDay" nzPlaceHolder="生年月日"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="24">入社時間</nz-form-label>
+            <nz-form-control [nzSpan]="10" nzErrorTip="入力してください。">
+              <nz-date-picker formControlName="JoinDate" nzPlaceHolder="入社時間"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="24">在留資格 </nz-form-label>
+            <nz-form-control [nzSpan]="10" nzErrorTip="入力してください。">
+              <input nz-input type="text" formControlName="Residence" placeholder="" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="24">在留期限日</nz-form-label>
+            <nz-form-control [nzSpan]="10" nzErrorTip="入力してください。">
+              <nz-date-picker formControlName="ResidenceDeadline" nzPlaceHolder="在留期限日"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="24">マイナンバー</nz-form-label>
+            <nz-form-control [nzSpan]="10" nzErrorTip="入力してください。">
+              <input nz-input type="text" formControlName="MyNumber" placeholder="" />
+            </nz-form-control>
+          </nz-form-item>
+          <button nz-button [nzType]="'primary'" (click)="submit()">更新資料</button>
+        </form>
+      </div>
+    </nz-col>
+  </nz-row>
+</nz-card>

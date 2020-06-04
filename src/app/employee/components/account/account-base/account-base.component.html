@@ -1,0 +1,21 @@
+<nz-layout>
+  <nz-layout>
+    <nz-sider>
+      <ul nz-menu nzMode="inline">
+        <li nz-menu-item [nzMatchRouter]="true" [nzMatchRouterExact]="true" [routerLink]="['/employee/account']">
+          基本设置
+        </li>
+        <li nz-menu-item [nzMatchRouter]="true" [nzMatchRouterExact]="true"
+          [routerLink]="['/employee/account/address']">
+          地址设置
+        </li>
+        <li nz-menu-item [nzMatchRouter]="true" [nzMatchRouterExact]="true"
+          [routerLink]="['/employee/account/security']">安全设置
+        </li>
+      </ul>
+    </nz-sider>
+    <nz-content>
+      <router-outlet></router-outlet>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

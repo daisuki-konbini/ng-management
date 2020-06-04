@@ -1,0 +1,48 @@
+<nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+  <ng-container *ngIf="showDatas$ | async as datas">
+    <nz-col [nzSpan]="8" *ngFor="let data of datas | keyvalue">
+      <nz-card [nzTitle]="template1">
+        <nz-card [nzTitle]="item.ApplicationCategory.Name" [nzExtra]="extraTemplate" *ngFor="let item of data.value">
+          <div class="content" nzHoverable>
+            <p *ngFor="let field of item.ApplicationCategory.Template">{{field.label+'：'+item.Record[field.name]}}</p>
+            <div nz-row class="tips">
+              <div nz-col nzFlex="4">
+                <nz-tag [nzColor]="'volcano'">{{item.StatusName}}</nz-tag>
+              </div>
+              <div nz-col>
+                <button nz-popconfirm nz-button nzDanger nzPopconfirmTitle="确定要删除申请?" nzSize="small"
+                  (nzOnConfirm)="confirm(item.Id)" (nzOnCancel)="cancel()" nzPopconfirmPlacement="top">
+                  删除
+                </button>
+              </div>
+            </div>
+          </div>
+          <ng-template #extraTemplate>
+            <span>{{formatDeadline(item.Deadline)}}</span>
+          </ng-template>
+        </nz-card>
+
+      </nz-card>
+      <ng-template #template1>
+        <div class="calendar-title">{{formatDate(data.key)}}</div>
+      </ng-template>
+    </nz-col>
+  </ng-container>
+
+
+  <nz-col [nzSpan]="8">
+    <nz-card>
+      <nz-calendar [nzFullscreen]="false" [(ngModel)]="date" [nzDateCell]="cell"
+        (nzSelectChange)="onValueChange($event)">
+      </nz-calendar>
+      <ng-template #cell let-date>
+        <div class="events">
+          <ng-container *ngIf="showDates$ | async as dates">
+            <nz-badge nzStatus="error" *ngIf="dates.has(date.toLocaleDateString())"></nz-badge>
+          </ng-container>
+
+        </div>
+      </ng-template>
+    </nz-card>
+  </nz-col>
+</nz-row>

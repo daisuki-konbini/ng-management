@@ -1,0 +1,57 @@
+<nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+  <nz-col [nzSpan]="24">
+    <nz-card>
+      <nz-steps [nzCurrent]="step">
+        <nz-step nzTitle="已填写"></nz-step>
+        <nz-step nzTitle="可修改" nzSubtitle="截止日期 2020-05-29"> </nz-step>
+        <nz-step nzTitle="已完成"></nz-step>
+      </nz-steps>
+      <form [formGroup]="workScheduleForm" nz-form>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5">勤務時間</nz-form-label>
+          <nz-form-control [nzSpan]="19">
+            <input nz-input formControlName="hours" type="number">
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5">勤務表アップロード</nz-form-label>
+          <nz-form-control [nzSpan]="19" [nzValidateStatus]="'success'" nzErrorTip="请上传文件">
+            <nz-upload nzAction="api/v1/file" [nzName]="'file'" [(nzFileList)]="fileList"
+              [nzBeforeUpload]="beforeUpload">
+              <button nz-button><i nz-icon nzType="upload"></i>アップロード</button>
+            </nz-upload>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5" nzFor="remark">備考</nz-form-label>
+          <nz-form-control [nzSpan]="19">
+            <textarea rows="3" formControlName="remark" nz-input></textarea>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5" nzFor="remark">通勤券</nz-form-label>
+          <nz-form-control [nzSpan]="19" *ngIf="commuterPass">
+            <input nz-input type="text" disabled class="traffic" [value]="commuterPass.Record.Amount+'円'">
+            <i nz-icon nzType="minus-circle-o" class="dynamic-delete-button" (click)="delAmmuterPass()"></i>
+          </nz-form-control>
+          <nz-form-control [nzSpan]="19" *ngIf="!commuterPass">
+            <a nz-button nzType="dashed" [routerLink]="['/employee/work-shedule']" (click)="showModal()">
+              <i nz-icon nzType="plus"></i>
+              申请
+            </a>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-row>
+          <nz-form-control [nzSpan]="14" [nzOffset]="5">
+            <button [nzLoading]="loading" nz-button nzType="primary" *ngIf="step === 0" (click)="submit()">登録</button>
+            <button [nzLoading]="loading" nz-button nzType="primary" *ngIf="step === 1" (click)="update()">修改</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </nz-card>
+  </nz-col>
+</nz-row>
+
+<nz-modal nzWidth="90vh" [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzFooter="false">
+  <app-application-add [category]="2" [template]="12" (submited)="handleSubmit($event)"></app-application-add>
+</nz-modal>

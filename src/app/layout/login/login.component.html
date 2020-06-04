@@ -1,0 +1,24 @@
+<nz-row>
+  <nz-col [nzXs]="{ span: 5, offset: 1 }" [nzLg]="{ span: 6, offset: 9 }">
+    <nz-card>
+      <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="入力してください。">
+            <nz-input-group nzPrefixIcon="mail">
+              <input type="email" nz-input formControlName="accountName" placeholder="email" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="入力してください。">
+            <nz-input-group nzPrefixIcon="lock">
+              <input type="password" nz-input formControlName="password" placeholder="Password" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+      </form>
+    </nz-card>
+  </nz-col>
+</nz-row>

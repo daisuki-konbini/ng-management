@@ -1,0 +1,24 @@
+<nz-card [nzBordered]="false" nzTitle="地址设置">
+  <nz-row>
+    <nz-col [nzSpan]=" 14">
+      <div class="info-form">
+        <form nz-form [formGroup]="addressForm">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="24">郵便番号</nz-form-label>
+            <nz-form-control [nzSpan]="8" nzErrorTip="postcode!">
+              <input nz-input formControlName="postCode" type="text" placeholder="0410002" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="24">ご住所</nz-form-label>
+            <nz-form-control [nzSpan]="24" nzErrorTip="Please input your Password!">
+              <textarea rows="3" nz-input formControlName="address"
+                placeholder="例）〒106-0044 東京都港区東麻布1丁目8番1號 東麻布ISビル4F"></textarea>
+            </nz-form-control>
+          </nz-form-item>
+          <button nz-button [nzType]="'primary'" (click)="submit()">更新資料</button>
+        </form>
+      </div>
+    </nz-col>
+  </nz-row>
+</nz-card>

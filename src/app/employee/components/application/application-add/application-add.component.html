@@ -1,0 +1,57 @@
+<nz-card>
+  <nz-steps [nzCurrent]="current">
+    <nz-step *ngIf="true" [nzTitle]="selectedCategoryName$|async"></nz-step>
+    <nz-step nzTitle="記入"></nz-step>
+    <nz-step nzTitle="確認"></nz-step>
+  </nz-steps>
+  <div class="steps-content">
+    <div *ngIf="current == 0">
+      <div (click)="selectType(cate.Id)" nz-card-grid class="grid-style"
+        *ngFor="let cate of categorys$ | async;let i = index" #selectCategory>
+        {{cate.Name}}
+      </div>
+    </div>
+    <div *ngIf="current != 0">
+      <form nz-form [formGroup]="requestForm" (ngSubmit)="submit()">
+        <ng-container *ngIf="selectedCategory$ | async as cate">
+          <nz-form-item *ngFor="let field of cate.Template">
+            <nz-form-label [nzSpan]="5">{{field.label}}</nz-form-label>
+            <nz-form-control [nzSpan]="19" nzErrorTip="入力してください。" [ngSwitch]="field.type">
+
+              <textarea nz-input rows="3" *ngSwitchCase="'textarea'" [formControlName]="field.name"></textarea>
+
+              <nz-date-picker nzFormat="yyyy-MM-dd HH:mm:ss" [nzDisabledDate]="disabledDate"
+                [nzShowTime]="{ nzDefaultOpenValue: timeDefaultValue }" *ngSwitchCase="'day'"
+                [formControlName]="field.name">
+              </nz-date-picker>
+
+              <nz-month-picker nzFormat="yyyy-MM" [formControlName]="field.name" *ngSwitchCase="'month'"
+                nzPlaceHolder="Select month">
+              </nz-month-picker>
+
+              <input nz-input type="text" *ngSwitchCase="'text'" [formControlName]="field.name" />
+
+              <input nz-input type="number" *ngSwitchCase="'number'" [formControlName]="field.name" />
+
+              <nz-upload [nzBeforeUpload]="beforeUpload" *ngSwitchCase="'file'" [nzFileList]="fileList">
+                <button (click)="false" nz-button><i nz-icon nzType="upload"></i>Upload</button>
+              </nz-upload>
+
+            </nz-form-control>
+          </nz-form-item>
+        </ng-container>
+      </form>
+    </div>
+  </div>
+  <div class="steps-action">
+    <button nz-button (click)="step(-1)" *ngIf="current > 0">
+      <span>前のステップ</span>
+    </button>
+    <button nz-button (click)="step(+1)" *ngIf="current < 2 && current > 0">
+      <span>次へ</span>
+    </button>
+    <button nz-button (click)="done()" *ngIf="current === 2">
+      <span>完成</span>
+    </button>
+  </div>
+</nz-card>

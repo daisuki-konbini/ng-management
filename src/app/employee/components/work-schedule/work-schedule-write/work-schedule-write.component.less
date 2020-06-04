@@ -1,0 +1,50 @@
+[nz-form] {
+  max-width: 700px;
+  margin: 24px auto;
+}
+
+:host /deep/ .ant-card-head {
+  border-bottom: none;
+}
+
+
+.editable-cell {
+  position: relative;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+.editable-row:hover .editable-cell {
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  padding: 4px 11px;
+}
+
+.dynamic-delete-button {
+  cursor: pointer;
+  position: relative;
+  top: 4px;
+  font-size: 24px;
+  color: #999;
+  transition: all 0.3s;
+}
+
+.dynamic-delete-button:hover {
+  color: #777;
+}
+
+.traffic {
+  margin-right: 15px;
+  width: 60%;
+}
+
+::ng-deep .vertical-center-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+::ng-deep .vertical-center-modal .ant-modal {
+  width: 60vw;
+}

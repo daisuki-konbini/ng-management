@@ -1,0 +1,23 @@
+<nz-card [nzBordered]="false" nzTitle="安全设置">
+  <nz-row>
+    <nz-col [nzSpan]="14">
+      <div class="info-form">
+        <form nz-form [formGroup]="securityForm">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="24">電話番号</nz-form-label>
+            <nz-form-control [nzSpan]="8" nzErrorTip="入力してください。">
+              <input nz-input type="text" formControlName="PhoneNumber" placeholder="例）08038948989" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="24">メールアドレス </nz-form-label>
+            <nz-form-control [nzSpan]="8" nzErrorTip="入力してください。">
+              <input nz-input type="text" formControlName="EmailAddress" placeholder="例）taro@rakuten.com" />
+            </nz-form-control>
+          </nz-form-item>
+          <button nz-button [nzType]="'primary'" (click)="submit()">更新資料</button>
+        </form>
+      </div>
+    </nz-col>
+  </nz-row>
+</nz-card>

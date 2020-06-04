@@ -1,0 +1,7 @@
+<nz-card class="menu-list">
+  <div *ngFor="let menu of menus" nz-card-grid [ngStyle]="gridStyle" routerLinkActive="active" [routerLink]="[menu.url]"
+    [queryParams]="menu.params">
+    <i nz-icon [nzType]=" menu.iconType ? menu.iconType : 'calendar'" nzTheme="outline" style="font-size:2em;"></i>
+    <span>{{menu.title}}</span>
+  </div>
+</nz-card>

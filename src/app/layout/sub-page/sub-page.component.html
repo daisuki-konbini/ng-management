@@ -1,0 +1,13 @@
+<nz-row>
+  <nz-col [nzSpan]="24">
+    <nz-card class="menu-list">
+      <div *ngFor="let menu of menus" nz-card-grid [ngStyle]="gridStyle" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact:
+        true}" [routerLink]="[menu.url]" [queryParams]="menu.params">
+        <i nz-icon [nzType]=" menu.iconType ? menu.iconType : 'calendar'" nzTheme="outline" style="font-size:2em;"></i>
+        <span>{{menu.title}}</span>
+      </div>
+    </nz-card>
+  </nz-col>
+</nz-row>
+<router-outlet></router-outlet>
